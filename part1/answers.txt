@@ -1,22 +1,22 @@
-1.1
+## 1.1
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
 4b55132b1ad7        nginx               "/docker-entrypoint.…"   24 seconds ago      Exited (0) 5 seconds ago                       gifted_murdock
 2f091ae6d287        nginx               "/docker-entrypoint.…"   32 seconds ago      Exited (0) 5 seconds ago                       crazy_turing
 029f631c6604        nginx               "/docker-entrypoint.…"   38 seconds ago      Up 37 seconds              80/tcp              vigorous_mendeleev
 
-1.2
+## 1.2
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 
-1.3
+## 1.3
 Give me the password: basics
 You found the correct password. Secret message is:
 "This is the secret message"
 
-1.4
+## 1.4
 $ winpty docker exec -it faa bash
 root@faa39ab1b45d:/usr/app# tail -f ./logs.txt
 Mon, 09 Nov 2020 13:16:09 GMT
@@ -24,7 +24,7 @@ Mon, 09 Nov 2020 13:16:12 GMT
 Secret message is:
 "Docker is easy"
 
-1.5
+## 1.5
 $ winpty docker run -it --name exercise ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
 Input website:
 helsinki.fi
@@ -47,7 +47,7 @@ Searching..
 <p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
 </body></html>
 
-1.6
+## 1.6
 ----------------Dockerfile-----------------
 FROM devopsdockeruh/overwrite_cmd_exercise
 
@@ -65,3 +65,32 @@ $ docker run docker-clock -c 60
 62
 63
 ...
+
+## 1.7
+----------------Dockerfile-----------------
+FROM ubuntu:16.04
+
+RUN apt update && apt install -y curl
+COPY script.sh .
+
+CMD ./script.sh
+----------------script.sh------------------
+echo "Input website";
+read website;
+echo "Searching..";
+sleep 1;
+curl http://$website;
+-------------------------------------------
+$ docker build -t curler .
+...
+$ winpty docker run -it curler
+Input website
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
