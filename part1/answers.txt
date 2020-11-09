@@ -16,3 +16,11 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 Give me the password: basics
 You found the correct password. Secret message is:
 "This is the secret message"
+
+1.4
+$ winpty docker exec -it faa bash
+root@faa39ab1b45d:/usr/app# tail -f ./logs.txt
+Mon, 09 Nov 2020 13:16:09 GMT
+Mon, 09 Nov 2020 13:16:12 GMT
+Secret message is:
+"Docker is easy"
