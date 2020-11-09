@@ -8,7 +8,6 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 1.2
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 
@@ -24,3 +23,26 @@ Mon, 09 Nov 2020 13:16:09 GMT
 Mon, 09 Nov 2020 13:16:12 GMT
 Secret message is:
 "Docker is easy"
+
+1.5
+$ winpty docker run -it --name exercise ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+Input website:
+helsinki.fi
+Searching..
+sh: 1: curl: not found
+$ docker start exercise
+exercise
+$ winpty docker exec -it exercise bash
+root@54351ba5e53e:/# apt update && apt upgrade -y && apt install curl -y
+...
+root@54351ba5e53e:/# exit
+$ winpty docker attach exercise
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
