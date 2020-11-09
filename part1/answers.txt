@@ -1,0 +1,13 @@
+1.1
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+4b55132b1ad7        nginx               "/docker-entrypoint.…"   24 seconds ago      Exited (0) 5 seconds ago                       gifted_murdock
+2f091ae6d287        nginx               "/docker-entrypoint.…"   32 seconds ago      Exited (0) 5 seconds ago                       crazy_turing
+029f631c6604        nginx               "/docker-entrypoint.…"   38 seconds ago      Up 37 seconds              80/tcp              vigorous_mendeleev
+
+1.2
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
