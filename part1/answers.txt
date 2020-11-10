@@ -134,3 +134,26 @@ node_modules
 -------------------------------------------
 $ docker build -t backend .
 $ docker run -p 9001:8000 -v $(pwd)/logs.txt:/logs.txt backend
+
+## 1.12
+----------------Dockerfile (backend)-------
+FROM ubuntu:16.04
+ENV FRONT_URL=http://localhost:9001
+EXPOSE 8000
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+COPY . .
+RUN npm install -y && npm audit fix
+CMD [ "npm", "start" ]
+----------------Dockerfile (frontend)------
+FROM ubuntu:16.04
+EXPOSE 5000
+ENV API_URL=http://localhost:9000
+WORKDIR /app
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+COPY . .
+RUN npm install -y && npm audit fix
+CMD [ "npm", "start" ]
+
+-------------------------------------------
+$ docker run -p 9000:8000 backend
+$ docker run -p 9001:5000 frontend
