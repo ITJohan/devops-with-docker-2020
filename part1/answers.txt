@@ -187,3 +187,9 @@ https://hub.docker.com/repository/docker/itjohan/city-pop
 
 ## 1.16
 https://docker-example-heroku-1337.herokuapp.com/
+
+## 1.17
+----------------Dockerfile (frontend)------
+FROM ubuntu:16.04
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+-------------------------------------------
