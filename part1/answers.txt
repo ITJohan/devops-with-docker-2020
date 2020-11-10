@@ -108,7 +108,7 @@ Secret message is:
 $ docker run -p 9000:80 devopsdockeruh/ports_exercise
 
 ## 1.10
-----------------Dockerfile-------------------
+----------------Dockerfile-----------------
 FROM ubuntu:16.04
 EXPOSE 5000
 WORKDIR /app
@@ -117,4 +117,6 @@ COPY . .
 RUN npm install -y
 RUN npm audit fix
 CMD [ "npm", "start" ]
+----------------.dockerignore--------------
+node_modules
 -------------------------------------------
