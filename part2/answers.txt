@@ -34,3 +34,6 @@ services:
     ports:
       - 9000:8000
 -----------------------------------------------
+
+## 2.4
+$ docker-compose up --scale compute=3
