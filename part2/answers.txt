@@ -8,3 +8,14 @@ services:
     volumes:
       - ./logs.txt:/usr/app/logs.txt
 -----------------------------------------------
+
+## 2.2
+docker-compose.yml-----------------------------
+version: '3.5'
+
+services:
+  web-service:
+    image: devopsdockeruh/ports_exercise
+    ports:
+      - 8000:80
+-----------------------------------------------
