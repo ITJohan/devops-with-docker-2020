@@ -58,3 +58,37 @@ services:
     ports:
       - 6379:6379
 -----------------------------------------------
+
+## 2.6
+docker-compose.yml-----------------------------
+version: '3.5'
+
+services:
+  redis:
+    image: redis
+  postgres:
+    image: postgres
+    environment: 
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - database:/var/lib/postgresql/data
+  backend:
+    image: backend
+    ports:
+      - 8000:8000
+    environment:
+      - REDIS=redis
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=password
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+      - redis
+  frontend:
+    image: frontend
+    ports:
+      - 5000:5000
+
+volumes:
+  database:
+-----------------------------------------------
