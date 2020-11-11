@@ -1,0 +1,10 @@
+## 2.1
+docker-compose.yml-----------------------------
+version: '3'
+
+services:
+  first-volume-exercise:
+    image: devopsdockeruh/first_volume_exercise
+    volumes:
+      - ./logs.txt:/usr/app/logs.txt
+-----------------------------------------------
