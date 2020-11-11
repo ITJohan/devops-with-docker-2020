@@ -37,3 +37,24 @@ services:
 
 ## 2.4
 $ docker-compose up --scale compute=3
+
+## 2.5
+docker-compose.yml-----------------------------
+version: '3.5'
+
+services:
+  frontend:
+    image: frontend
+    ports:
+      - 9001:5000
+  backend:
+    image: backend
+    ports:
+      - 9000:8000
+    environment:
+      - REDIS=redis
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+-----------------------------------------------
